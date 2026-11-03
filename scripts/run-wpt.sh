@@ -7,12 +7,11 @@ set -euo pipefail
 # and pipes its JSON through triage. Any extra args are forwarded to wpt-runner.
 #
 # Env:
-#   INBROWSE_BIN     inbrowse binary (default: inbrowse on PATH;
-#                    OBSCURA_BIN is still honoured as a fallback)
+#   INBROWSE_BIN     inbrowse binary (default: inbrowse on PATH)
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
-INBROWSE_BIN="${INBROWSE_BIN:-${OBSCURA_BIN:-inbrowse}}"
+INBROWSE_BIN="${INBROWSE_BIN:-inbrowse}"
 WPT_DIR="$SCRIPT_DIR/wpt"
 RESULTS_DIR="$SCRIPT_DIR/results"
 TARGET_DIR="${CARGO_TARGET_DIR:-$SCRIPT_DIR/target}"

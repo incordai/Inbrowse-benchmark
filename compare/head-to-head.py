@@ -19,14 +19,13 @@ automation.
 Usage:
   INBROWSE_BIN=/path/to/inbrowse python3 head-to-head.py [--runs N] [--wait S]
                                                          [--filter X] [--json]
-  (OBSCURA_BIN is still read as a fallback when INBROWSE_BIN is unset.)
 """
 import argparse, json, os, re, socket, statistics, subprocess, threading, time
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OC = os.path.join(os.path.dirname(HERE), "obstacle-course")
-INBROWSE = os.environ.get("INBROWSE_BIN") or os.environ.get("OBSCURA_BIN") or "inbrowse"
+INBROWSE = os.environ.get("INBROWSE_BIN") or "inbrowse"
 CHROME = os.environ.get("CHROME_BIN", "google-chrome")
 GNU_TIME = "/usr/bin/time"
 

@@ -12,8 +12,7 @@ Neither engine is asked for layout, paint, or a screenshot, so this is not a
 full-browser comparison. It is the comparison that matters for headless
 scraping and agent automation, where the rendered pixels are never used.
 
-The binary is taken from `INBROWSE_BIN` (falling back to `OBSCURA_BIN`, then
-`inbrowse` on `PATH`).
+The binary is taken from `INBROWSE_BIN` (falling back to `inbrowse` on `PATH`).
 
 ## head-to-head.py
 

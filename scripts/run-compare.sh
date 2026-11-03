@@ -6,14 +6,13 @@ set -euo pipefail
 # peak RSS, pages/sec.
 #
 # Env:
-#   INBROWSE_BIN  path to the inbrowse binary (default: inbrowse on PATH;
-#                 OBSCURA_BIN is still honoured as a fallback)
+#   INBROWSE_BIN  path to the inbrowse binary (default: inbrowse on PATH)
 #   CHROME_BIN    path to chrome/chromium (default: google-chrome)
 # For accurate numbers, run on an otherwise idle host (CPU contention skews
 # throughput). Extra args are forwarded to the underlying scripts.
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-export INBROWSE_BIN="${INBROWSE_BIN:-${OBSCURA_BIN:-inbrowse}}"
+export INBROWSE_BIN="${INBROWSE_BIN:-inbrowse}"
 export CHROME_BIN="${CHROME_BIN:-google-chrome}"
 RESULTS_DIR="${RESULTS_DIR:-$SCRIPT_DIR/results}"
 mkdir -p "$RESULTS_DIR"

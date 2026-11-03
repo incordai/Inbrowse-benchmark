@@ -16,8 +16,7 @@ Usage:
   python3 stealth-bench/run.py --json
   python3 stealth-bench/run.py --filter nav
 
-The binary comes from INBROWSE_BIN (OBSCURA_BIN is still read as a fallback),
-defaulting to `inbrowse` on PATH.
+The binary comes from INBROWSE_BIN, defaulting to `inbrowse` on PATH.
 """
 
 import argparse, json, os, re, subprocess, sys, threading, time
@@ -25,7 +24,7 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 from urllib.parse import urlparse
 
 PORT = 9877
-OB = os.environ.get("INBROWSE_BIN") or os.environ.get("OBSCURA_BIN") or "inbrowse"
+OB = os.environ.get("INBROWSE_BIN") or "inbrowse"
 HERE = os.path.dirname(os.path.abspath(__file__))
 RESULTS_DIR = os.path.join(HERE, "..", "results")
 
@@ -97,9 +96,9 @@ Promise.all([
 FIXTURES["anti-detect"] = """<!DOCTYPE html><html><head><meta charset="utf-8"></head><body>
 <script>
 var allKeys = Object.keys(window);
-// Engine-identifying leaks: any key containing the engine name, "inbrowse" or
-// the upstream "obscura" it was forked from (case-insensitive)
-var engineLeaks = allKeys.filter(k => /inbrowse|obscura/.test(k.toLowerCase()));
+// Engine-identifying leaks: any key containing the engine name, "inbrowse"
+// (case-insensitive)
+var engineLeaks = allKeys.filter(k => /inbrowse/.test(k.toLowerCase()));
 // Internal helper leaks: underscore-prefixed (informational, not immediately identifying)
 var internalLeaks = allKeys.filter(k => k.startsWith('_'));
 var chromeOk = !!(window.chrome && window.chrome.app && window.chrome.runtime);

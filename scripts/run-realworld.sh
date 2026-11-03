@@ -5,13 +5,12 @@ set -euo pipefail
 # inbrowse and report how many render to a usable document, plus latency + memory.
 #
 # Env:
-#   INBROWSE_BIN  path to the inbrowse binary (default: inbrowse on PATH;
-#                 OBSCURA_BIN is still honoured as a fallback)
+#   INBROWSE_BIN  path to the inbrowse binary (default: inbrowse on PATH)
 # Needs outbound network. The live web drifts, so results are a snapshot.
 # Extra args are forwarded to run.py (e.g. --wait 6, --sites my-list.txt).
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-export INBROWSE_BIN="${INBROWSE_BIN:-${OBSCURA_BIN:-inbrowse}}"
+export INBROWSE_BIN="${INBROWSE_BIN:-inbrowse}"
 RESULTS_DIR="$SCRIPT_DIR/results"
 mkdir -p "$RESULTS_DIR"
 

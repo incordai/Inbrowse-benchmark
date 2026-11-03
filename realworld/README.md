@@ -21,8 +21,7 @@ INBROWSE_BIN=/path/to/inbrowse python3 run.py --sites my.txt  # your own list
 INBROWSE_BIN=/path/to/inbrowse python3 run.py --json
 ```
 
-When `INBROWSE_BIN` is unset the runner falls back to `OBSCURA_BIN`, then to
-`inbrowse` on `PATH`.
+When `INBROWSE_BIN` is unset the runner uses `inbrowse` on `PATH`.
 
 `sites.txt` is a plain list of URLs (blank lines and `#` comments ignored).
 Edit it to match the kind of pages your scraper actually targets.

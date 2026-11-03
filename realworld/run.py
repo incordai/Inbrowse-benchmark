@@ -15,12 +15,11 @@ or block automation, so the success rate and timings are a snapshot.
 Usage:
   INBROWSE_BIN=/path/to/inbrowse python3 run.py [--wait S] [--sites FILE]
                                                 [--chrome] [--json]
-  (OBSCURA_BIN is still read as a fallback when INBROWSE_BIN is unset.)
 """
 import argparse, json, os, re, statistics, subprocess, time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-INBROWSE = os.environ.get("INBROWSE_BIN") or os.environ.get("OBSCURA_BIN") or "inbrowse"
+INBROWSE = os.environ.get("INBROWSE_BIN") or "inbrowse"
 CHROME = os.environ.get("CHROME_BIN", "google-chrome")
 GNU_TIME = "/usr/bin/time"
 _RSS = re.compile(r"Maximum resident set size \(kbytes\): (\d+)")

@@ -6,12 +6,11 @@ set -euo pipefail
 # URLs or flags as args and they are forwarded to perf-bench.
 #
 # Env:
-#   INBROWSE_BIN   path to the inbrowse binary (default: inbrowse on PATH;
-#                  OBSCURA_BIN is still honoured as a fallback)
+#   INBROWSE_BIN   path to the inbrowse binary (default: inbrowse on PATH)
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
-INBROWSE_BIN="${INBROWSE_BIN:-${OBSCURA_BIN:-inbrowse}}"
+INBROWSE_BIN="${INBROWSE_BIN:-inbrowse}"
 RESULTS_DIR="$SCRIPT_DIR/results"
 PERF_JSON="$RESULTS_DIR/perf.json"
 

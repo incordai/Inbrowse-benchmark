@@ -15,7 +15,6 @@ cold, where Chrome's is not.
 Usage:
   INBROWSE_BIN=/path/to/inbrowse python3 scale.py [--pages N] [--levels 1,4,8]
                                                   [--wait S] [--page fixtures/x.html] [--json]
-  (OBSCURA_BIN is still read as a fallback when INBROWSE_BIN is unset.)
 """
 import argparse, json, os, socket, statistics, subprocess, threading, time
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
@@ -23,7 +22,7 @@ import psutil
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OC = os.path.join(os.path.dirname(HERE), "obstacle-course")
-INBROWSE = os.environ.get("INBROWSE_BIN") or os.environ.get("OBSCURA_BIN") or "inbrowse"
+INBROWSE = os.environ.get("INBROWSE_BIN") or "inbrowse"
 CHROME = os.environ.get("CHROME_BIN", "google-chrome")
 
 

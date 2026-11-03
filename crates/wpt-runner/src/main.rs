@@ -34,9 +34,8 @@ struct Args {
     /// "cdp" drives a running `inbrowse serve`.
     #[arg(long, default_value = "fetch")]
     backend: String,
-    /// Path to the inbrowse binary used by the fetch backend. The old
-    /// `--obscura-bin` spelling is still accepted as an alias.
-    #[arg(long, default_value = "inbrowse", alias = "obscura-bin")]
+    /// Path to the inbrowse binary used by the fetch backend.
+    #[arg(long, default_value = "inbrowse")]
     inbrowse_bin: String,
     /// Seconds to let each page settle so the harness can finish (fetch backend,
     /// passed as `inbrowse fetch --wait`).

@@ -16,14 +16,13 @@ each outcome from the exit code + stderr:
 
 The bug classes (CRASH/PANIC/CAP_HIT/HANG/HANG_HARD) are the point of the sweep.
 
-The binary comes from INBROWSE_BIN (OBSCURA_BIN is still read as a fallback),
-defaulting to `inbrowse` on PATH.
+The binary comes from INBROWSE_BIN, defaulting to `inbrowse` on PATH.
 """
 import argparse, json, os, subprocess, sys, threading, time, urllib.parse
 from collections import deque, Counter, defaultdict
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-OB = os.environ.get("INBROWSE_BIN") or os.environ.get("OBSCURA_BIN") or "inbrowse"
+OB = os.environ.get("INBROWSE_BIN") or "inbrowse"
 SEEDS = os.path.join(HERE, "..", "realworld", "sites.txt")
 RESULTS = os.path.join(HERE, "..", "results")
 TIMEOUT, WAIT = 20, 5

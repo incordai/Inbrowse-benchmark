@@ -6,12 +6,11 @@ set -euo pipefail
 # fixture, and reports per-stage correctness + latency.
 #
 # Env:
-#   INBROWSE_BIN  path to the inbrowse binary (default: inbrowse on PATH;
-#                 OBSCURA_BIN is still honoured as a fallback)
+#   INBROWSE_BIN  path to the inbrowse binary (default: inbrowse on PATH)
 # Extra args are forwarded to run.py (e.g. --json, --runs 10, --filter react).
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-export INBROWSE_BIN="${INBROWSE_BIN:-${OBSCURA_BIN:-inbrowse}}"
+export INBROWSE_BIN="${INBROWSE_BIN:-inbrowse}"
 
 RESULTS_DIR="$SCRIPT_DIR/results"
 mkdir -p "$RESULTS_DIR"

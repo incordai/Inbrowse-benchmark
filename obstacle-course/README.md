@@ -33,7 +33,7 @@ INBROWSE_BIN=/path/to/inbrowse python3 run.py --filter react --runs 10
 ```
 
 On Windows point `INBROWSE_BIN` at `inbrowse.exe`. When `INBROWSE_BIN` is unset
-the runner falls back to `OBSCURA_BIN`, then to `inbrowse` on `PATH`.
+the runner uses `inbrowse` on `PATH`.
 
 Inbrowse blocks private/loopback addresses by default, so the runner passes
 `--allow-private-network` (the fixtures are served on `127.0.0.1`).

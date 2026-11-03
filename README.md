@@ -7,9 +7,7 @@ intentionally limited to the classic DOM/JavaScript standards path. Rendering
 regressions belong to Inbrowse's deterministic `render-repros/` suite in the main
 repository, where changes can be reviewed against engine-owned expectations.
 
-This suite is derived from
-[obscura-benchmark](https://github.com/h4ckf0r0day/obscura-benchmark); see
-`NOTICE`.
+This suite is derived from [obscura-benchmark](https://github.com/h4ckf0r0day/obscura-benchmark); see `NOTICE`.
 
 ## Benchmark tracks
 
@@ -31,7 +29,7 @@ Results: published under `results/published/` after each full run.
 
 Every harness takes the Inbrowse binary from `INBROWSE_BIN` (on Windows, point
 it at `inbrowse.exe`). When `INBROWSE_BIN` is unset, the Python runners and the
-`scripts/` wrappers fall back to `OBSCURA_BIN`, then to `inbrowse` on `PATH`.
+`scripts/` wrappers use `inbrowse` on `PATH`.
 `inbrowse scrape` (used by the perf bench's `--scrape` mode) also needs
 `inbrowse-worker` (`inbrowse-worker.exe`) next to the main binary.
 

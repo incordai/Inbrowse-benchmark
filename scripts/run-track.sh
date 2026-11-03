@@ -16,7 +16,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 TRACK="${1:?usage: run-track.sh <track> [args...]}"
 shift
 
-export INBROWSE_BIN="${INBROWSE_BIN:-${OBSCURA_BIN:-inbrowse}}"
+export INBROWSE_BIN="${INBROWSE_BIN:-inbrowse}"
 OUT="$SCRIPT_DIR/results/$(date -u +%Y-%m-%d)-$TRACK"
 mkdir -p "$OUT"
 

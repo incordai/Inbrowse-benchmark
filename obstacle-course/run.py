@@ -15,7 +15,6 @@ Stage types (manifest.json):
 inbrowse blocks loopback by default, so fetches pass --allow-private-network.
 
 Usage: INBROWSE_BIN=/path/to/inbrowse python3 run.py [--json] [--filter X] [--runs N]
-(OBSCURA_BIN is still read as a fallback when INBROWSE_BIN is unset.)
 """
 import argparse, json, os, socket, statistics, subprocess, sys, threading, time
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
@@ -78,7 +77,7 @@ def main():
     ap.add_argument("--filter", help="only stages whose name or category contains this")
     args = ap.parse_args()
 
-    inbrowse_bin = os.environ.get("INBROWSE_BIN") or os.environ.get("OBSCURA_BIN") or "inbrowse"
+    inbrowse_bin = os.environ.get("INBROWSE_BIN") or "inbrowse"
     manifest = json.load(open(os.path.join(HERE, "manifest.json")))
     runs = args.runs if args.runs is not None else manifest.get("runs", 5)
     warmup = args.warmup if args.warmup is not None else manifest.get("warmup", 1)
