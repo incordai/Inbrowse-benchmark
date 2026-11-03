@@ -1,0 +1,5 @@
+# The Docker image copies the working tree as is, so scripts must keep LF
+# endings even on a Windows checkout with core.autocrlf=true.
+*.sh text eol=lf
+*.py text eol=lf
+Dockerfile text eol=lf
