@@ -52,6 +52,9 @@ ENV INBROWSE_BIN=/opt/inbrowse/inbrowse \
 
 WORKDIR /bench
 COPY . /bench
+# A Windows checkout can carry CRLF endings, which bash rejects.
+RUN find /bench -path /bench/target -prune -o \( -name '*.sh' -o -name '*.py' \) -type f -print0 \
+      | xargs -0 sed -i 's/\r$//'
 RUN cargo build --release --locked -j 2
 
 CMD ["bash", "scripts/run-track.sh", "obstacle-course"]
