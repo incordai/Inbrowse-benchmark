@@ -233,6 +233,51 @@
       "desc": "HTMLInputElement number: valueAsNumber reads 10, stepUp(3) advances by 3*step(5) to 25 and reflects into value"
     },
     {
+      "name": "form-click",
+      "file": "fixtures/forms-submit.html?via=click",
+      "category": "forms",
+      "type": "eval",
+      "check": "JSON.stringify(String(window.__obstacle||''))",
+      "expect": "form:sent=1&one=c&two=y&three=q&multi=m1&multi=m3&cb=on1&r=r2&t=new+value&btn=go",
+      "desc": "form submission by submit-button click after script sets selectedIndex, value, option.selected, a multiple select, a checkbox, a radio and a text input; asserts the query string the server received, submitter included"
+    },
+    {
+      "name": "form-requestsubmit",
+      "file": "fixtures/forms-submit.html?via=request",
+      "category": "forms",
+      "type": "eval",
+      "check": "JSON.stringify(String(window.__obstacle||''))",
+      "expect": "form:sent=1&one=c&two=y&three=q&multi=m1&multi=m3&cb=on1&r=r2&t=new+value&btn=go",
+      "desc": "the same changes submitted with form.requestSubmit(submitter): the submitter's name and value are sent"
+    },
+    {
+      "name": "form-submit",
+      "file": "fixtures/forms-submit.html?via=submit",
+      "category": "forms",
+      "type": "eval",
+      "check": "JSON.stringify(String(window.__obstacle||''))",
+      "expect": "form:sent=1&one=c&two=y&three=q&multi=m1&multi=m3&cb=on1&r=r2&t=new+value",
+      "desc": "the same changes submitted with form.submit(): no submitter entry"
+    },
+    {
+      "name": "text-editing",
+      "file": "fixtures/text-editing.html",
+      "category": "forms",
+      "type": "eval",
+      "check": "JSON.stringify(String(window.__obstacle||''))",
+      "expect": "edit:world:hello there@11:8-8:0-11",
+      "desc": "text control selection: setSelectionRange reads back, setRangeText replaces the selection, a script-set value puts the caret at the end, select() selects all and fires select"
+    },
+    {
+      "name": "iframes",
+      "file": "fixtures/iframes.html",
+      "category": "frames",
+      "type": "eval",
+      "check": "JSON.stringify(String(window.__obstacle||''))",
+      "expect": "frames:2:from src (true):from srcdoc!:true:true",
+      "desc": "same-origin src and srcdoc iframes: both in window.frames, child scripts run before the parent's load event, and the parent reads each child document through its element"
+    },
+    {
       "name": "extract-article",
       "file": "fixtures/extract-article.html",
       "category": "extraction",

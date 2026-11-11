@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Text editing</title></head>
+<body>
+  <!-- Selection state of a text control: setSelectionRange reads back, the
+       selected text is replaced in place by setRangeText, a value set by
+       script puts the caret at the end, and select() selects everything and
+       fires a `select` event. -->
+  <input id="i" value="hello world">
+  <textarea id="ta">line one
+line two</textarea>
+  <script>
+    var i = document.getElementById('i');
+    var ta = document.getElementById('ta');
+    var parts = [];
+    var reported = false;
+    i.addEventListener('select', function () {
+      if (reported) return;
+      reported = true;
+      setTimeout(function () {
+        parts.push(i.selectionStart + '-' + i.selectionEnd);
+        window.__obstacle = 'edit:' + parts.join(':');
+      }, 50);
+    });
+    i.focus();
+    i.setSelectionRange(6, 11);
+    parts.push(i.value.substring(i.selectionStart, i.selectionEnd));
+    i.setRangeText('there', i.selectionStart, i.selectionEnd, 'end');
+    parts.push(i.value + '@' + i.selectionStart);
+    ta.value = 'replaced';
+    parts.push(ta.selectionStart + '-' + ta.selectionEnd);
+    i.select();
+  </script>
+</body>
+</html>

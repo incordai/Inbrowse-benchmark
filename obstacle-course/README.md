@@ -88,6 +88,19 @@ Grouped by the Inbrowse feature they exercise (every stage is also timed):
 | dialog | `HTMLDialogElement` showModal/close/returnValue |
 | input-step | `<input type=number>` `valueAsNumber`/`stepUp` |
 
+**forms** — form submission and text editing (expected values match Chrome)
+| stage | exercises |
+| ----- | --------- |
+| form-click | script-changed selects, checkbox, radio and text submitted by a button click; asserts the received query string |
+| form-requestsubmit | the same through `requestSubmit(submitter)` |
+| form-submit | the same through `form.submit()` (no submitter) |
+| text-editing | `setSelectionRange`, `setRangeText`, caret after a script-set value, `select()` |
+
+**frames** — iframes
+| stage | exercises |
+| ----- | --------- |
+| iframes | same-origin `src` and `srcdoc` frames: `window.frames`, child scripts before the parent's `load`, `contentDocument` |
+
 **extraction** — the `--dump` CLI modes
 | stage | exercises |
 | ----- | --------- |

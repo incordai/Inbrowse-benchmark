@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Form submission</title></head>
+<body>
+  <!-- Form submission after script changes to every kind of control. The page
+       loads as forms-submit.html?via=<click|request|submit>, changes the
+       controls, and submits by that route. The GET submission reloads this
+       page with the form data as its query (marked by `sent=1`), and the
+       landing page reports the query string the server received. -->
+  <form id="f" action="forms-submit.html" method="get">
+    <input type="hidden" name="sent" value="1">
+    <select name="one"><option value="a">A</option><option value="b">B</option><option value="c">C</option></select>
+    <select name="two"><option>x</option><option>y</option></select>
+    <select name="three"><option value="p">P</option><option value="q">Q</option></select>
+    <select name="multi" multiple>
+      <option value="m1">1</option><option value="m2" selected>2</option><option value="m3">3</option>
+    </select>
+    <input type="checkbox" name="cb" value="on1">
+    <input type="radio" name="r" value="r1" checked><input type="radio" name="r" value="r2">
+    <input type="text" name="t" value="old">
+    <button id="go" name="btn" value="go">Go</button>
+  </form>
+  <script>
+    var params = new URLSearchParams(location.search);
+    if (params.get('sent') === '1') {
+      window.__obstacle = 'form:' + location.search.slice(1);
+    } else {
+      var f = document.getElementById('f');
+      var field = function (name) { return f.querySelector('[name="' + name + '"]'); };
+      field('one').selectedIndex = 2;
+      field('two').value = 'y';
+      field('three').options[1].selected = true;
+      var multi = field('multi');
+      multi.options[0].selected = true;
+      multi.options[1].selected = false;
+      multi.options[2].selected = true;
+      field('cb').checked = true;
+      f.querySelectorAll('[name="r"]')[1].checked = true;
+      field('t').value = 'new value';
+      var via = params.get('via');
+      if (via === 'click') document.getElementById('go').click();
+      else if (via === 'request') f.requestSubmit(document.getElementById('go'));
+      else f.submit();
+    }
+  </script>
+</body>
+</html>

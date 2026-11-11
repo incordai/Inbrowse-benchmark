@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Iframes</title></head>
+<body>
+  <!-- Same-origin `src` and `srcdoc` iframes: both appear in window.frames,
+       each frame's document is reachable from its element, and script in the
+       parent reads text the child documents rendered. -->
+  <iframe id="a" src="iframe-child.html"></iframe>
+  <iframe id="b" srcdoc="<p id=t>from srcdoc</p><script>document.getElementById('t').textContent += '!'</script>"></iframe>
+  <script>
+    function report() {
+      var a = document.getElementById('a');
+      var b = document.getElementById('b');
+      var aDoc = a.contentDocument, bDoc = b.contentDocument;
+      var aText = aDoc && aDoc.getElementById('t') ? aDoc.getElementById('t').textContent : '';
+      var bText = bDoc && bDoc.getElementById('t') ? bDoc.getElementById('t').textContent : '';
+      if (!aText || !bText) return false;
+      window.__obstacle = 'frames:' + window.frames.length + ':' + aText + ':' + bText + ':' +
+        (a.contentWindow.document === aDoc) + ':' + (a.contentWindow.parent === window);
+      return true;
+    }
+    window.addEventListener('load', function () {
+      if (!report()) {
+        var tries = 0;
+        var timer = setInterval(function () { if (report() || ++tries > 40) clearInterval(timer); }, 25);
+      }
+    });
+  </script>
+</body>
+</html>
